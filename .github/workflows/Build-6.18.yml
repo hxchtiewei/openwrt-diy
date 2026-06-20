@@ -11,7 +11,7 @@ on:
         options:
           - 'false'
           - 'true'
-  schedule:
+#  schedule:
 #   - cron: '0 18 */3 * *'
 
 permissions: write-all
