@@ -25,11 +25,11 @@ clone_if_missing() {
   fi
 }
 
-clone_if_missing https://github.com/sbwml/luci-app-mosdns              ""     package/luci-app-mosdns
-clone_if_missing https://github.com/ximiTech/luci-app-msd_lite         ""     package/luci-app-msd_lite
-clone_if_missing https://github.com/ximiTech/msd_lite                  ""     package/msd_lite
-clone_if_missing https://github.com/pymumu/luci-app-smartdns           ""     package/luci-app-smartdns
-clone_if_missing https://github.com/pymumu/openwrt-smartdns            ""     package/smartdns
+# clone_if_missing https://github.com/sbwml/luci-app-mosdns              ""     package/luci-app-mosdns
+# clone_if_missing https://github.com/ximiTech/luci-app-msd_lite         ""     package/luci-app-msd_lite
+# clone_if_missing https://github.com/ximiTech/msd_lite                  ""     package/msd_lite
+# clone_if_missing https://github.com/pymumu/luci-app-smartdns           ""     package/luci-app-smartdns
+# clone_if_missing https://github.com/pymumu/openwrt-smartdns            ""     package/smartdns
 clone_if_missing https://github.com/QiuSimons/luci-app-daed            ""     package/dae
 clone_if_missing https://github.com/Openwrt-Passwall/openwrt-passwall-packages "" package/passwall-packages
 clone_if_missing https://github.com/Openwrt-Passwall/openwrt-passwall  ""     package/passwall-luci
