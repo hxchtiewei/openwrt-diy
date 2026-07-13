@@ -44,25 +44,27 @@ VERSION_FILE="include/version.mk"
 echo "[diy] 修改版本为编译日期: $DATE_VERSION"
 sed -i "s/^VERSION_NUMBER:=.*/VERSION_NUMBER:=-$DATE_VERSION by hxch/" "$VERSION_FILE"
 
-# ========== 新增：配置 Nginx 默认使用 HTTP（禁用 HTTPS 与强制跳转） ==========
-echo "[diy] 配置 Nginx：使用 HTTP 访问，关闭 HTTPS 及 302 跳转"
+# ========== 新增：配置 Nginx 默认80,443都可 ==========
+echo "[diy] 配置 Nginx：使用 HTTP 访问"
 mkdir -p files/etc/config
 cat > files/etc/config/nginx << 'EOF'
-config global
-	option uci_enable '1'
+config main 'global'
+	option uci_enable 'true'
 
 config server '_lan'
-	option listen '80 default_server'
-	option listen '[::]:80 default_server'
+	list listen '443 ssl default_server'
+	list listen '[::]:443 ssl default_server'
+	list listen '80'
+	list listen '[::]:80'
 	option server_name '_lan'
-	option include 'restrict_locally'
-	option include 'conf.d/*.locations'
-	# 注释 SSL 相关行
-	# option ssl_certificate '/etc/nginx/conf.d/_lan.crt'
-	# option ssl_certificate_key '/etc/nginx/conf.d/_lan.key'
+	list include 'restrict_locally'
+	list include 'conf.d/*.locations'
+	option uci_manage_ssl 'self-signed'
+	option ssl_certificate '/etc/nginx/conf.d/_lan.crt'
+	option ssl_certificate_key '/etc/nginx/conf.d/_lan.key'
 	option ssl_session_cache 'shared:SSL:32k'
 	option ssl_session_timeout '64m'
-	option access_log 'off'
+	option access_log 'off; # logd openwrt'	
 EOF
 # ========================================================================
 
